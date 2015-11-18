@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.input.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+
+<HBox id="HBox" prefHeight="530.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.SettingsController">
+ <children>
+      <FlowPane prefHeight="400.0" prefWidth="106.0" />
+      <BorderPane prefHeight="530.0" prefWidth="636.0">
+         <bottom>
+            <Pane prefHeight="22.0" prefWidth="354.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="146.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="336.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="54.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="%content.language" />
+                  <Label text="\%content.grade.range" GridPane.rowIndex="1" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="%content.language.english" />
+                        <RadioButton mnemonicParsing="false" text="%content.language.french" />
+                        <RadioButton mnemonicParsing="false" text="%content.language.german" />
+                     </children>
+                  </VBox>
+                  <RangeSlider   orientation="VERTICAL" min="1" max="10000" blockIncrement="100"  GridPane.columnIndex="1" showTickMarks="true"  
+                       showTickLabels="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"/>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+      <GridPane prefHeight="525.0" prefWidth="197.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="108.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.0" minWidth="9.0" prefWidth="89.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancel" text="%content.cancel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#apply" text="%content.apply" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+   </children>
+</HBox>

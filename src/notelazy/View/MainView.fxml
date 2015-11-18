@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
-    
-</AnchorPane>
+<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="%menu.file">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#importData" text="%menu.import" />
+                  <MenuItem mnemonicParsing="false" onAction="#exportData" text="%menu.export" />
+                  <MenuItem mnemonicParsing="false" onAction="#settings" text="%menu.settings" />
+              <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#editLessons" text="%menu.edit.lessons" />
+              <MenuItem mnemonicParsing="false" onAction="#editGrade" text="%menu.edit.grades" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" onAction="#help" text="%menu.help" />
+        </menus>
+      </MenuBar>
+   </top>
+   <right>
+      <LineChart BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </right>
+   <center>
+      <TableView prefHeight="375.0" prefWidth="292.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

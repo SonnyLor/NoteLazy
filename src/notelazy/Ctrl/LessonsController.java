@@ -15,42 +15,31 @@ import notelazy.View.ViewMaster;
  *
  * @author sonny
  */
-public class MainViewController implements Initializable {
+public class LessonsController implements Initializable {
 
     private ViewMaster application;
-    private ResourceBundle rb;
     
     public void setApp(ViewMaster application){
         this.application = application;
-        application.setTitle(rb.getString("title"),rb.getString("title.main"));
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.rb = rb;
-    }  
+        application.setTitle(rb.getString("title"),rb.getString("title.edition.lesson"));
+    }    
     
-    public void importData(){
-        application.goToExportView();
-    }
-    public void exportData(){
-        application.goToExportView();
-    }
-    public void settings(){
-        application.goToSettingsView();
-    }
-    public void close(){
+    public void addAndSelect(){
         
     }
-    public void editLessons(){
-        application.goToEditLessonView();
+    public void add(){
+        
     }
-    public void editGrade(){
-        application.goToEditGradesView();
+    public void deleteSelected(){
+        
     }
-    public void help(){
-        application.goToHelpView();
+    public void back(){
+        application.goToMainView();
     }
 }
