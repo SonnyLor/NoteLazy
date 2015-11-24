@@ -38,8 +38,6 @@
                         <RadioButton mnemonicParsing="false" text="%content.language.german" />
                      </children>
                   </VBox>
-                  <RangeSlider   orientation="VERTICAL" min="1" max="10000" blockIncrement="100"  GridPane.columnIndex="1" showTickMarks="true"  
-                       showTickLabels="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"/>
                </children>
             </GridPane>
          </center>

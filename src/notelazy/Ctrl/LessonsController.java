@@ -18,16 +18,18 @@ import notelazy.View.ViewMaster;
 public class LessonsController implements Initializable {
 
     private ViewMaster application;
+    private ResourceBundle rb;
     
     public void setApp(ViewMaster application){
         this.application = application;
+        application.setTitle(rb.getString("title"),rb.getString("title.edition.lesson"));
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        application.setTitle(rb.getString("title"),rb.getString("title.edition.lesson"));
+            this.rb=rb;
     }    
     
     public void addAndSelect(){

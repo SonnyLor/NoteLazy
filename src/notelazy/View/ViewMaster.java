@@ -91,7 +91,7 @@ public class ViewMaster extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        locale = new Locale("en", "En");
+        locale = new Locale("fr", "CH");
         goToMainView();
         primaryStage.show();
     }
