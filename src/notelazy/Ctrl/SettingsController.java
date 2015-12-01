@@ -6,8 +6,11 @@
 package notelazy.Ctrl;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import notelazy.View.ViewMaster;
 
 /**
@@ -18,25 +21,62 @@ import notelazy.View.ViewMaster;
 public class SettingsController implements Initializable {
 
     private ViewMaster application;
+    private Locale returnLocale;
     private ResourceBundle rb;
-    
-    public void setApp(ViewMaster application){
+    @FXML
+    private RadioButton english;
+    @FXML
+    private RadioButton french;
+    @FXML
+    private RadioButton german;
+    private static final Locale localeGerman = new Locale("de", "DE");
+    private static final Locale localeFrench = new Locale("fr", "CH");
+    private static final Locale localeEnglish = new Locale("en", "EN");
+
+    public void setApp(ViewMaster application) {
         this.application = application;
-        application.setTitle(rb.getString("title"),rb.getString("title.settings"));
+        application.setTitle(rb.getString("title"), rb.getString("title.settings"));
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.rb=rb;
-    }    
-    
-    public void cancel(){
+        returnLocale = rb.getLocale();
+        if (returnLocale.equals(localeEnglish)) {
+            english.setSelected(true);
+        }
+        if (returnLocale.equals(localeFrench)) {
+            french.setSelected(true);
+        }
+        if (returnLocale.equals(localeGerman)) {
+            german.setSelected(true);
+        }
+        this.rb = rb;
+    }
+
+    public void cancel() {
+        application.setLocale(returnLocale);
         application.goToMainView();
     }
-    
-    public void apply(){
+
+    public void apply() {
         application.goToMainView();
+    }
+
+    public void english() {
+        application.setLocale(localeEnglish);
+        english.setSelected(true);
+    }
+
+    public void french() {
+        application.setLocale(localeFrench);
+        french.setSelected(true);
+    }
+
+    public void deutch() {
+        application.setLocale(localeGerman);
+        german.setSelected(true);
     }
 }
