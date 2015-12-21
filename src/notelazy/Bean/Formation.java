@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Formation")
 public class Formation {
     @XmlElement(name = "Bloc")
-    private ArrayList<Bloc> blocs = new ArrayList<Bloc>();
+    public ArrayList<Bloc> blocs = new ArrayList<Bloc>();
 
     public Formation() {
     }

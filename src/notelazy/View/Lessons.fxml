@@ -45,13 +45,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Lesson" GridPane.rowIndex="1"/>
-                  <TextField accessibleHelp="Lesson" promptText="Weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="Select bloc" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <TextField fx:id="lesson" promptText="Lesson" GridPane.rowIndex="1"/>
+                  <TextField fx:id="weight" accessibleHelp="Lesson" promptText="Weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <MenuButton fx:id="blocs" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="Select bloc" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <items>
                       <MenuItem mnemonicParsing="false">
                            <graphic>
-                              <TextField onAction="#addAndSelect" promptText="%content.new" />
+                              <TextField fx:id="newBloc" onAction="#addAndSelect" promptText="%content.new" />
                            </graphic></MenuItem>
                     </items>
                   </MenuButton>

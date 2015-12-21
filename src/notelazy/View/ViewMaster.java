@@ -5,31 +5,38 @@
  */
 package notelazy.View;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.stage.*;
+import javafx.stage.FileChooser.ExtensionFilter;
 import notelazy.Ctrl.*;
 
 /**
  *
  * @author sonny
  */
-public class ViewMaster extends Application {
+public class ViewMaster {
 
     private Stage primaryStage;
-    Locale locale;
+    private Locale locale;
 
-    public ViewMaster() {
+    public ViewMaster(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        locale = new Locale("fr", "CH");
+        goToMainView();
+        primaryStage.show();
     }
+
     public void goToMainView() {
         try {
             MainViewController mainView = (MainViewController) replaceSceneContent("/notelazy/View/MainView.fxml");
@@ -38,6 +45,7 @@ public class ViewMaster extends Application {
             Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void goToEditLessonView() {
         try {
             LessonsController mainView = (LessonsController) replaceSceneContent("/notelazy/View/Lessons.fxml");
@@ -46,6 +54,7 @@ public class ViewMaster extends Application {
             Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void goToEditGradesView() {
         try {
             GradesController mainView = (GradesController) replaceSceneContent("/notelazy/View/Grades.fxml");
@@ -54,6 +63,7 @@ public class ViewMaster extends Application {
             Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void goToHelpView() {
         try {
             MainViewController mainView = (MainViewController) replaceSceneContent("/notelazy/View/MainView.fxml");
@@ -62,20 +72,19 @@ public class ViewMaster extends Application {
             Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void goToExportView() {
-        try {
-            MainViewController mainView = (MainViewController) replaceSceneContent("/notelazy/View/MainView.fxml");
-            mainView.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
+
     public void goToImportView() {
-        try {
-            MainViewController mainView = (MainViewController) replaceSceneContent("/notelazy/View/MainView.fxml");
-            mainView.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(ViewMaster.class.getName()).log(Level.SEVERE, null, ex);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("NoteLazy XML Files", "*.nxml"));
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+            System.out.println(selectedFile.getAbsolutePath());
         }
     }
 
@@ -88,22 +97,17 @@ public class ViewMaster extends Application {
         }
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        locale = new Locale("fr", "CH");
-        goToMainView();
-        primaryStage.show();
-    }
-
-    public void setLocale(Locale locale){
+    /*@Override
+     public void start(Stage primaryStage) throws Exception {
+     }*/
+    public void setLocale(Locale locale) {
         this.locale = locale;
     }
 
-    public void setTitle(String title,String subTitle){
-        primaryStage.setTitle(title +" - " +subTitle);
+    public void setTitle(String title, String subTitle) {
+        primaryStage.setTitle(title + " - " + subTitle);
     }
-    
+
     private Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setResources(ResourceBundle.getBundle("notelazy.View.Bundles.Bundles", locale));
@@ -116,6 +120,7 @@ public class ViewMaster extends Application {
         } finally {
             in.close();
         }
+        primaryStage.getIcons().add(new Image("file:image/logo.png"));
         Scene scene = new Scene(page, 960, 530);
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();

@@ -5,10 +5,15 @@
  */
 package notelazy.Ctrl;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import notelazy.Bean.Bloc;
+import notelazy.NoteLazy;
 import notelazy.View.ViewMaster;
+import notelazy.Worker.XMLLoader;
 
 /**
  * FXML Controller class
@@ -17,6 +22,11 @@ import notelazy.View.ViewMaster;
  */
 public class LessonsController implements Initializable {
 
+    private TextField lesson;
+    private TextField weight;
+    private TextField newBloc;
+    private MenuButton blocs;
+    
     private ViewMaster application;
     private ResourceBundle rb;
     
@@ -33,7 +43,9 @@ public class LessonsController implements Initializable {
     }    
     
     public void addAndSelect(){
-        
+        Bloc bloc = new Bloc(newBloc.getText());
+        NoteLazy.handler.formation.addBloc(bloc);
+        XMLLoader.saveFormationToFile(new File(NoteLazy.FormationPath), NoteLazy.handler.formation);
     }
     public void add(){
         

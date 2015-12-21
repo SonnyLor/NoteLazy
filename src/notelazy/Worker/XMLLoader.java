@@ -13,6 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import notelazy.Bean.Formation;
+import notelazy.Bean.Student;
 
 /**
  *
@@ -79,9 +80,71 @@ public class XMLLoader {
         }
     }
 
-    private static boolean initFile(File file) {
+    /**
+     * Loads person data from the specified file. The current person data will
+     * be replaced.
+     *
+     * @param file
+     */
+    public static Student loadStudentFromFile(File file, Student data) {
+        if (initFile(file)) {
+            try {
+                JAXBContext context = JAXBContext.newInstance(Student.class);
+                Unmarshaller um = context.createUnmarshaller();
+
+                // Reading XML from the file and unmarshalling.
+                data = Student.class.cast(um.unmarshal(file));
+
+                // Save the file path to the registry.
+            } catch (Exception e) { // catches ANY exception
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Could not load data");
+                alert.setContentText("Could not load data from file:\n" + file.getPath());
+
+                alert.showAndWait();
+            }
+            return data;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Saves the current person data to the specified file.
+     *
+     * @param file
+     */
+    public static void saveFormationToFile(File file, Student data) {
+        if (initFile(file)) {
+            try {
+                JAXBContext context = JAXBContext
+                        .newInstance(data.getClass());
+                Marshaller m = context.createMarshaller();
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+                // Wrapping our person data.
+                //classType.getClass() wrapper = new Stock();
+                // Marshalling and saving XML to the file.
+                m.marshal(data, file);
+
+            } catch (Exception e) { // catches ANY exception
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Could not save data");
+                alert.setContentText("Could not save data to file:\n" + file.getPath());
+                e.printStackTrace();
+                alert.showAndWait();
+            }
+        }
+    }
+ 
+   private static boolean initFile(File file) {
         if (!file.exists()) {
             try {
+                File parent = file.getParentFile();
+                if (!parent.exists())
+                    file.mkdirs();
                 file.createNewFile();
             } catch (IOException ex) {
                 return false;

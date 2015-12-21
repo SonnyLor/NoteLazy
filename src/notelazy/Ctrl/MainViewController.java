@@ -40,7 +40,7 @@ public class MainViewController implements Initializable {
         application.goToExportView();
     }
     public void exportData(){
-        Formation form = new Formation();
+        /*Formation form = new Formation();
         Bloc bloc1 = new Bloc("Système d'information");
         bloc1.addLesson(new Lesson("Programmation avancé 2"));
         bloc1.addLesson(new Lesson("Système d'information 2"));
@@ -49,8 +49,7 @@ public class MainViewController implements Initializable {
         bloc2.addLesson(new Lesson("Programmation avancé 3"));
         bloc2.addLesson(new Lesson("Système d'information 4"));
         form.addBloc(bloc2);
-        XMLLoader loader = new XMLLoader();
-        loader.saveFormationToFile(new File("Essais.xml"), form);
+        XMLLoader.saveFormationToFile(new File("Essais.xml"), form);*/
         application.goToExportView();
     }
     public void settings(){

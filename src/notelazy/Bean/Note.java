@@ -11,33 +11,22 @@ import javax.xml.bind.annotation.*;
  *
  * @author sonny
  */
-public class Lesson {
-
+public class Note {
+    
     @XmlAttribute(name ="Name")
-    public String name;
+    public Lesson lesson;
 
     @XmlAttribute(name ="Weight")
     public double weight;
 
-    public Lesson() {
+    @XmlAttribute(name ="Weight")
+    public double note;
+
+    public Note() {
     }
 
-    public Lesson(String name, double weight) {
-        this.name = name;
+    public Note(Lesson lesson, double note, double weight) {
+        this.lesson = lesson;
         this.weight = weight;
     }
-
-    public Lesson(String name) {
-        this.name = name;
-        this.weight = 1;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
 }

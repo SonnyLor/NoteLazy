@@ -14,9 +14,9 @@ import javax.xml.bind.annotation.*;
  */
 public class Bloc {
     @XmlAttribute(name ="Name")
-    private String name;
+    public String name;
     @XmlElement(name = "Lesson")
-    private ArrayList<Lesson> lessons;
+    public ArrayList<Lesson> lessons;
 
     public Bloc(String name, ArrayList<Lesson> lessons) {
         this.name = name;
@@ -39,5 +39,13 @@ public class Bloc {
     
     public void removeLesson(Lesson lesson){
         lessons.remove(lesson);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
     }
 }
