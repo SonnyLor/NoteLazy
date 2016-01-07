@@ -40,10 +40,10 @@
       </LineChart>
    </right>
    <center>
-      <TableView prefHeight="375.0" prefWidth="292.0" BorderPane.alignment="CENTER">
+      <TableView  fx:id="table" prefHeight="375.0" prefWidth="292.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colBloc" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="colAverage" prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
    </center>

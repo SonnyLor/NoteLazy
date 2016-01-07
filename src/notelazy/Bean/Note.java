@@ -5,6 +5,7 @@
  */
 package notelazy.Bean;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,21 +13,57 @@ import javax.xml.bind.annotation.*;
  * @author sonny
  */
 public class Note {
-    
-    @XmlAttribute(name ="Name")
-    public Lesson lesson;
 
-    @XmlAttribute(name ="Weight")
-    public double weight;
+    /*@XmlElement(name = "Lesson")
+    public Lesson lesson;*/
 
-    @XmlAttribute(name ="Weight")
-    public double note;
+    private final SimpleDoubleProperty weight;
+
+    private final SimpleDoubleProperty note;
+
+    public Note(double note, double weight) {
+        this.weight = new SimpleDoubleProperty(weight);
+        this.note = new SimpleDoubleProperty(note);
+    }
 
     public Note() {
+        this.weight = new SimpleDoubleProperty();
+        this.note = new SimpleDoubleProperty();
+     }
+
+    /*public Lesson getLesson() {
+        return lesson;
+    }
+*/
+   /* public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }*/
+
+    @XmlAttribute(name = "Weight")
+    public double getWeight() {
+        return weight.get();
     }
 
-    public Note(Lesson lesson, double note, double weight) {
-        this.lesson = lesson;
-        this.weight = weight;
+    public void setWeight(double weight) {
+        this.weight.set(weight);
     }
+
+    @XmlAttribute(name = "Note")
+    public double getNote() {
+        return note.get();
+    }
+
+    public void setNote(double note) {
+        this.note.set(note);
+    }
+
+    public SimpleDoubleProperty getWeightProp() {
+        return weight;
+    }
+
+    public SimpleDoubleProperty getNoteProp() {
+        return note;
+    }
+    
+    
 }

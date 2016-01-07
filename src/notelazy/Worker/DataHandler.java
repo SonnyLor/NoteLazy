@@ -8,54 +8,45 @@ package notelazy.Worker;
 import java.io.File;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import notelazy.Bean.Formation;
-import notelazy.Bean.Student;
 import notelazy.NoteLazy;
 
 /**
  *
  * @author sonny
  */
-public class DataHandler extends Service<Student>{
+public class DataHandler extends Service<Void> {
 
-    public Student student;
-    public Formation formation;
-    
-    public DataHandler(){    
-        this.formation = new Formation();
-        this.student = new Student();
-    }
+    public String path;
+    public boolean read;
+    public boolean export;
 
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Formation getFormation() {
-        return formation;
-    }
-
-    public void setFormation(Formation formation) {
-        this.formation = formation;
+    public DataHandler(String path, boolean read, boolean export) {
+        this.path = path;
+        this.read = read;
+        this.export = export;
     }
 
     @Override
-    protected Task<Student> createTask() {
-        /*this.formation = new Formation();
-        XMLLoader.loadFormationFromFile(new File(NoteLazy.FormationPath), formation);
-        */
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return new Task<Student>() {
+    protected Task<Void> createTask() {
+        return new Task<Void>() {
+
             @Override
-            protected Student call() throws Exception {
-                Student student = new Student();
-                XMLLoader.loadStudentFromFile(new File(NoteLazy.StudentPath), student);
-                return student;
+            protected Void call() {
+                try {
+                    if (export) {
+                            XMLLoader.saveFormationToFile(new File(path), NoteLazy.exportFormation);
+                    } else {
+                        if (read) {
+                            NoteLazy.formation = XMLLoader.loadFormationFromFile(new File(path));
+                        } else {
+                            XMLLoader.saveFormationToFile(new File(path), NoteLazy.formation);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
             }
         };
     }
 }
-    

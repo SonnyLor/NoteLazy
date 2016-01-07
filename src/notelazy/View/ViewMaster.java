@@ -5,21 +5,23 @@
  */
 package notelazy.View;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.concurrent.Service;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.*;
-import javafx.stage.FileChooser.ExtensionFilter;
 import notelazy.Ctrl.*;
+import notelazy.NoteLazy;
+import notelazy.Worker.DataHandler;
 
 /**
  *
@@ -29,6 +31,8 @@ public class ViewMaster {
 
     private Stage primaryStage;
     private Locale locale;
+    private Service<Void> loaderStudent;
+    private Service<Void> loaderFormation;
 
     public ViewMaster(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -73,21 +77,6 @@ public class ViewMaster {
         }
     }
 
-    public void goToExportView() {
-        
-    }
-
-    public void goToImportView() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("NoteLazy XML Files", "*.nxml"));
-        File selectedFile = fileChooser.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            System.out.println(selectedFile.getAbsolutePath());
-        }
-    }
-
     public void goToSettingsView() {
         try {
             SettingsController settings = (SettingsController) replaceSceneContent("/notelazy/View/Settings.fxml");
@@ -97,6 +86,12 @@ public class ViewMaster {
         }
     }
 
+    public void saveFormation() {
+        System.out.println("Sauvegarde des formations");
+        DataHandler handler = new DataHandler(NoteLazy.FormationPath,false,false);
+        handler.start();
+    }
+
     /*@Override
      public void start(Stage primaryStage) throws Exception {
      }*/
@@ -104,13 +99,33 @@ public class ViewMaster {
         this.locale = locale;
     }
 
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     public void setTitle(String title, String subTitle) {
         primaryStage.setTitle(title + " - " + subTitle);
     }
 
+    public void setErrorMEssage(String title, String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public ResourceBundle getRessourceBundle() {
+        return ResourceBundle.getBundle("notelazy.View.Bundles.Bundles", locale);
+    }
+
     private Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setResources(ResourceBundle.getBundle("notelazy.View.Bundles.Bundles", locale));
+        loader.setResources(getRessourceBundle());
         InputStream in = ViewMaster.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
         loader.setLocation(ViewMaster.class.getResource(fxml));
