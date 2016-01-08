@@ -45,7 +45,7 @@ public class XMLLoader {
             try {
                 File parent = file.getParentFile();
                 if (!parent.exists()) {
-                    file.mkdirs();
+                    parent.mkdirs();
                 }
                 file.createNewFile();
             } catch (IOException ex) {

@@ -94,6 +94,7 @@ public class LessonsController implements Initializable {
             Bloc bloc = selectedBloc;
             NoteLazy.formation.addBloc(bloc);
             bloc.lessons.add(newLesson);
+            blocsChoice.getItems().add(bloc);
             table.getItems().add(new DisplayableLesson(newLesson.getNameProp(), bloc.getNameProp(), newLesson.getWeightProp()));
         }
         application.saveFormation();

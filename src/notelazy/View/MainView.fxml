@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
+<BorderPane id="BorderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -29,21 +29,11 @@
         </menus>
       </MenuBar>
    </top>
-   <right>
-      <LineChart BorderPane.alignment="CENTER">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
-   </right>
    <center>
-      <TableView  fx:id="table" prefHeight="375.0" prefWidth="292.0" BorderPane.alignment="CENTER">
+      <TableView  fx:id="table" prefHeight="375.0" prefWidth="292.0"  BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colBloc" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="colAverage" prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colBloc" text="%content.bloc"  prefWidth="385.0" />
+          <TableColumn fx:id="colAverage" text="%content.average"  prefWidth="75.0"/>
         </columns>
       </TableView>
    </center>

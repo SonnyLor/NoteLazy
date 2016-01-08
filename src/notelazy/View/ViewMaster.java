@@ -87,7 +87,6 @@ public class ViewMaster {
     }
 
     public void saveFormation() {
-        System.out.println("Sauvegarde des formations");
         DataHandler handler = new DataHandler(NoteLazy.FormationPath,false,false);
         handler.start();
     }

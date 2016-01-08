@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -54,7 +54,7 @@ public class GradesController implements Initializable {
     @FXML
     private TableColumn colBloc;
 
-    Note newNote = new Note();
+    Note newNote = new Note(1, 1);
     Lesson lessonChoice;
     Bloc lessonBlocChoice;
 
@@ -69,9 +69,30 @@ public class GradesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.rb = rb;
+        grade.setOnKeyReleased(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                String contenu = grade.getText();
+                if (!contenu.isEmpty()) {
+                    System.out.println(contenu);
+                    try {
+                        double value = Double.valueOf(contenu);
+                        if (value > NoteLazy.formation.getMax()) {
+                            grade.setText(Integer.toString(NoteLazy.formation.getMax()));
+                            grade.selectAll();
+                        } else if (value < NoteLazy.formation.getMin()) {
+                            grade.setText(Integer.toString(NoteLazy.formation.getMin()));
+                            grade.selectAll();
+                        }
+
+                    } catch (Exception e) {
+                        grade.setText(Integer.toString(NoteLazy.formation.getMax()));
+                    }
+                }
+            }
+        });
         grade.textProperty().bindBidirectional(newNote.getNoteProp(), new NumberStringConverter());
         weight.textProperty().bindBidirectional(newNote.getWeightProp(), new NumberStringConverter());
-        //ArrayList<Note> notes = NoteLazy.student.result;
         ArrayList<Bloc> blocs = NoteLazy.formation.blocs;
         for (Bloc bloc : blocs) {
             lessonsChoice.getItems().addAll(bloc.lessons);
@@ -132,8 +153,8 @@ public class GradesController implements Initializable {
                         for (Lesson curretnLesson : bloc.lessons) {
                             if (curretnLesson.getName().equals(selectedGrade.getLesson())) {
                                 for (Note note : curretnLesson.notes) {
-                                    if(note.getNote()==selectedGrade.getGrade() && selectedGrade.getWeight()==note.getWeight()){
-                                        removeNote= note;
+                                    if (note.getNote() == selectedGrade.getGrade() && selectedGrade.getWeight() == note.getWeight()) {
+                                        removeNote = note;
                                         break;
                                     }
                                 }

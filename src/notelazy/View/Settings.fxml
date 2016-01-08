@@ -17,7 +17,7 @@
                 <Pane prefHeight="22.0" prefWidth="354.0" BorderPane.alignment="CENTER" />
             </bottom>
             <center>
-                <GridPane BorderPane.alignment="CENTER">
+                <GridPane fx:id="gridPane" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="146.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="336.0" />

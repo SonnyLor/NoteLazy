@@ -31,19 +31,13 @@ public class DataHandler extends Service<Void> {
         return new Task<Void>() {
 
             @Override
-            protected Void call() {
-                try {
-                    if (export) {
-                            XMLLoader.saveFormationToFile(new File(path), NoteLazy.exportFormation);
-                    } else {
-                        if (read) {
-                            NoteLazy.formation = XMLLoader.loadFormationFromFile(new File(path));
-                        } else {
-                            XMLLoader.saveFormationToFile(new File(path), NoteLazy.formation);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+            protected Void call() throws Exception{
+                if (export) {
+                    XMLLoader.saveFormationToFile(new File(path), NoteLazy.exportFormation);
+                } else if (read) {
+                    NoteLazy.formation = XMLLoader.loadFormationFromFile(new File(path));
+                } else {
+                    XMLLoader.saveFormationToFile(new File(path), NoteLazy.formation);
                 }
                 return null;
             }
