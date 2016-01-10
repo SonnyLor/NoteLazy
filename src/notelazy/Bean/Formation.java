@@ -20,13 +20,13 @@ public class Formation {
 
     @XmlElement(name = "Bloc")
     public ArrayList<Bloc> blocs = new ArrayList<Bloc>();
-    private SimpleIntegerProperty min;
+    private SimpleIntegerProperty min ;
     private SimpleIntegerProperty max;
 
     public Formation() {
         blocs = new ArrayList<>();
-        min = new SimpleIntegerProperty();
-        max = new SimpleIntegerProperty();
+        min = new SimpleIntegerProperty(1);
+        max = new SimpleIntegerProperty(6);
     }
 
     public Formation(ArrayList<Bloc> blocs, int min, int max) {

@@ -51,6 +51,7 @@
                   <Button mnemonicParsing="false" onAction="#add" text="%content.add" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Label text="%content.lesson" />
                   <Label text="%content.weight" GridPane.columnIndex="1" />
+                  <Label text="%content.bloc" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </top>
