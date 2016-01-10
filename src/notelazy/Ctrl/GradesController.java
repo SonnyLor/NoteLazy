@@ -136,8 +136,9 @@ public class GradesController implements Initializable {
     }
 
     public void addGrade() {
-        lessonChoice.notes.add(newNote);
-        table.getItems().add(new DisplayableGrade(newNote.getNoteProp(), lessonChoice.getNameProp(), newNote.getWeightProp(), lessonBlocChoice.getNameProp()));
+        Note savedNote = new Note(newNote.getNote(), newNote.getWeight());
+        lessonChoice.notes.add(savedNote);
+        table.getItems().add(new DisplayableGrade(savedNote.getNoteProp(), lessonChoice.getNameProp(), savedNote.getWeightProp(), lessonBlocChoice.getNameProp()));
         application.saveFormation();
     }
 

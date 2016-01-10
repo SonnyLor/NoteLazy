@@ -49,7 +49,7 @@ public class LessonsController implements Initializable {
     private ResourceBundle rb;
     private Service<Void> formationLoader;
     private Bloc selectedBloc;
-    private final Lesson newLesson = new Lesson();
+    private Lesson newLesson = new Lesson();
 
     public void setApp(ViewMaster application) {
         this.application = application;
@@ -86,16 +86,18 @@ public class LessonsController implements Initializable {
 
     public void add() {
         int index = NoteLazy.formation.blocs.indexOf(selectedBloc);
+        Lesson savedLesson = new Lesson(newLesson.getNameValue(), newLesson.getWeightValue());
         if (index > -1) {
             Bloc bloc = NoteLazy.formation.blocs.get(index);
-            bloc.lessons.add(newLesson);
-            table.getItems().add(new DisplayableLesson(newLesson.getNameProp(), bloc.getNameProp(), newLesson.getWeightProp()));
+            bloc.lessons.add(savedLesson);
+            table.getItems().add(new DisplayableLesson(savedLesson.getNameProp(), bloc.getNameProp(), savedLesson.getWeightProp()));
         } else {
             Bloc bloc = selectedBloc;
             NoteLazy.formation.addBloc(bloc);
-            bloc.lessons.add(newLesson);
+            bloc.lessons.add(savedLesson);
             blocsChoice.getItems().add(bloc);
-            table.getItems().add(new DisplayableLesson(newLesson.getNameProp(), bloc.getNameProp(), newLesson.getWeightProp()));
+            table.getItems().add(new DisplayableLesson(savedLesson.getNameProp(), bloc.getNameProp(), savedLesson.getWeightProp()));
+            blocsChoice.getSelectionModel().clearSelection();
         }
         application.saveFormation();
     }

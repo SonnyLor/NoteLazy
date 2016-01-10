@@ -45,10 +45,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="lesson" promptText="Lesson" GridPane.rowIndex="1" />
-                  <TextField fx:id="weight" promptText="Weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lesson" GridPane.rowIndex="1" />
+                  <TextField fx:id="weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ComboBox fx:id="blocsChoice" onAction="#selectBloc" prefWidth="150.0" promptText="%content.select.add.bloc" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#add" text="%content.add" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="%content.lesson" />
+                  <Label text="%content.weight" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </top>

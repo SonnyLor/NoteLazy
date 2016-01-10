@@ -128,7 +128,6 @@ public class MainViewController implements Initializable {
         chart.setVerticalGridLinesVisible(false);
         chart.getXAxis().setVisible(false);
         chart.getYAxis().setVisible(false);
-        System.out.println(getClass().getResource("/notelazy/ressources/overlay-chart.css"));
         chart.getStylesheets().addAll(getClass().getResource("/notelazy/ressources/overlay-chart.css").toExternalForm());
     }
 
@@ -149,10 +148,10 @@ public class MainViewController implements Initializable {
 
     public void importData() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
+        fileChooser.setTitle(rb.getString("content.open"));
         fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter(NoteLazy.Data_Extension.toUpperCase(application.getLocale()) + " Files", "*." + NoteLazy.Data_Extension),
-                new ExtensionFilter("All Files", "*.*"));
+                new ExtensionFilter(NoteLazy.Data_Extension.toUpperCase(application.getLocale()) + " "+rb.getString("content.files"), "*." + NoteLazy.Data_Extension),
+                new ExtensionFilter(rb.getString("content.allFiles"), "*.*"));
         File selectedFile = fileChooser.showOpenDialog(this.application.getPrimaryStage());
         if (selectedFile != null) {
             DataHandler load = new DataHandler(selectedFile.getPath(), true, false);
@@ -176,10 +175,10 @@ public class MainViewController implements Initializable {
 
     public void exportData() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
+        fileChooser.setTitle(rb.getString("content.save"));
         fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter(NoteLazy.Data_Extension.toUpperCase(application.getLocale()) + " Files", "*." + NoteLazy.Data_Extension),
-                new ExtensionFilter("All Files", "*.*"));
+                new ExtensionFilter(NoteLazy.Data_Extension.toUpperCase(application.getLocale()) + " "+rb.getString("content.files"), "*." + NoteLazy.Data_Extension),
+                new ExtensionFilter(rb.getString("content.allFiles"), "*.*"));
         File selectedFile = fileChooser.showSaveDialog(this.application.getPrimaryStage());
         if (selectedFile != null) {
             new Task<Void>() {

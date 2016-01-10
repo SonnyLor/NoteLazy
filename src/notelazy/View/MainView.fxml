@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane id="BorderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
+<BorderPane id="BorderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notelazy.Ctrl.MainViewController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -16,24 +16,23 @@
                   <MenuItem mnemonicParsing="false" onAction="#importData" text="%menu.import" />
                   <MenuItem mnemonicParsing="false" onAction="#exportData" text="%menu.export" />
                   <MenuItem mnemonicParsing="false" onAction="#settings" text="%menu.settings" />
-              <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#close" text="%menu.close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="%menu.edit">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#editLessons" text="%menu.edit.lessons" />
               <MenuItem mnemonicParsing="false" onAction="#editGrade" text="%menu.edit.grades" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#help" text="%menu.help" />
         </menus>
       </MenuBar>
    </top>
    <center>
-      <TableView  fx:id="table" prefHeight="375.0" prefWidth="292.0"  BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="375.0" prefWidth="292.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colBloc" text="%content.bloc"  prefWidth="385.0" />
-          <TableColumn fx:id="colAverage" text="%content.average"  prefWidth="75.0"/>
+          <TableColumn fx:id="colBloc" prefWidth="385.0" text="%content.bloc" />
+          <TableColumn fx:id="colAverage" prefWidth="75.0" text="%content.average" />
         </columns>
       </TableView>
    </center>

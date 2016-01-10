@@ -44,6 +44,10 @@ public class Lesson {
         return name.get();
     }
 
+    public String getNameValue() {
+        return name.getValue();
+    }
+
     public void setWeight(double weight) {
         this.weight.set(weight);
     }
@@ -51,6 +55,10 @@ public class Lesson {
     @XmlAttribute(name ="Weight")
     public double getWeight() {
         return weight.doubleValue();
+    }
+    
+    public double getWeightValue() {
+        return weight.getValue();
     }
 
     public SimpleStringProperty getNameProp() {

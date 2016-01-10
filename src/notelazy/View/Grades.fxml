@@ -50,6 +50,8 @@
                         <TextField fx:id="weight" promptText="%content.weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox fx:id="lessonsChoice" onAction="#selectLesson" prefWidth="150.0" promptText="%content.lesson" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#addGrade" text="%content.add" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="%content.grade" />
+                  <Label text="%content.weight" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
             </top>
